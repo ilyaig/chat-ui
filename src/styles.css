@@ -1,0 +1,21 @@
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #1a1d29;
+  color: #e8e9f0;
+  height: 100vh;
+}
+input, textarea, button { font-family: inherit; font-size: 14px; }
+input, textarea {
+  background: #262a3a; border: 1px solid #3a3f55; border-radius: 8px;
+  color: #e8e9f0; padding: 10px 12px; outline: none;
+}
+input:focus, textarea:focus { border-color: #5b8def; }
+button {
+  background: #5b8def; color: #fff; border: none; border-radius: 8px;
+  padding: 10px 16px; cursor: pointer;
+}
+button:hover { background: #4a7ce0; }
+button:disabled { opacity: .5; cursor: default; }
+.error { color: #ff7b7b; font-size: 13px; margin-top: 8px; }
+.muted { color: #8a90a8; font-size: 12px; }

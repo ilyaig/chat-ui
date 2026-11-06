@@ -1,0 +1,22 @@
+<div class="layout">
+  <app-user-list
+    [users]="users()"
+    [selected]="selected()"
+    [currentUsername]="auth.username()!"
+    (userSelected)="openChat($event)"
+    (logout)="logout()">
+  </app-user-list>
+
+  <main class="chat">
+    @if (selected(); as partner) {
+      <header class="chat-header">{{ partner }}</header>
+      <app-message-list
+        [messages]="messages()"
+        [currentUsername]="auth.username()!">
+      </app-message-list>
+      <app-message-input (send)="onSend($event)"></app-message-input>
+    } @else {
+      <div class="placeholder">Выберите собеседника слева 👋</div>
+    }
+  </main>
+</div>

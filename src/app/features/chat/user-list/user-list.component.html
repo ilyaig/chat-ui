@@ -1,0 +1,19 @@
+<aside class="sidebar">
+  <header>
+    <span>Мой ICQ: {{ currentUsername }}</span>
+    <button class="ghost" (click)="logout.emit()">Выйти</button>
+  </header>
+  @for (u of users; track u.username) {
+    <div class="user"
+         [class.active]="u.username === selected"
+         (click)="userSelected.emit(u.username)">
+      {{ u.username }}
+    </div>
+  }
+  @if (users.length <= 1) {
+    <div class="muted hint">
+      Пока вы один. Зарегистрируйте второго пользователя
+      в другом окне браузера.
+    </div>
+  }
+</aside>

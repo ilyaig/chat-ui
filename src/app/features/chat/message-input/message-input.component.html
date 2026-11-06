@@ -1,0 +1,6 @@
+<footer>
+  <textarea [(ngModel)]="draft"
+            (keyup.enter)="submit()"
+            placeholder="Введите сообщение…"></textarea>
+  <button (click)="submit()" [disabled]="!draft.trim()">Отправить</button>
+</footer>

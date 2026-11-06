@@ -1,0 +1,21 @@
+<div class="card">
+  <h1>ICQ-чат 💬</h1>
+  <label>
+    Логин
+    <input [(ngModel)]="username" autocomplete="username">
+  </label>
+  <label>
+    Пароль
+    <input type="password" [(ngModel)]="password"
+           autocomplete="current-password" (keyup.enter)="submit()">
+  </label>
+  @if (error(); as err) {
+    <div class="error">{{ err }}</div>
+  }
+  <button (click)="submit()" [disabled]="busy() || !username || !password">
+    {{ mode() === 'login' ? 'Войти' : 'Зарегистрироваться' }}
+  </button>
+  <a class="toggle" (click)="toggleMode()">
+    {{ mode() === 'login' ? 'Создать аккаунт' : 'У меня есть аккаунт' }}
+  </a>
+</div>

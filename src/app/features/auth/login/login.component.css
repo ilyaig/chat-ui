@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.card {
+  width: 340px;
+  padding: 32px;
+  background: #22263a;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+h1 { font-size: 22px; text-align: center; }
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #8a90a8;
+}
+button { margin-top: 4px; }
+.toggle {
+  color: #5b8def;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
