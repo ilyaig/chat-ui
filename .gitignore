@@ -1,0 +1,24 @@
+# Зависимости и сборка
+/node_modules/
+/dist/
+/.angular/cache/
+
+# Логи и временные файлы
+npm-debug.log*
+yarn-error.log*
+*.log
+
+# IDE
+/.idea/
+/.vscode/
+*.iml
+*.ipr
+*.iws
+
+# ОС
+.DS_Store
+Thumbs.db
+
+# Env-файлы с секретами (если появятся)
+.env
+.env.local
