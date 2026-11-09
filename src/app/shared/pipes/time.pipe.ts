@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * Инструмент формирования отображения времени
+ */
 @Pipe({ name: 'appTime', standalone: true })
 export class TimePipe implements PipeTransform {
   transform(value: string | null | undefined): string {

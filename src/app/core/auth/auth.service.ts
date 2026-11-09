@@ -15,15 +15,28 @@ export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = inject(API_URL);
 
-  register(username: string, password: string): Observable<RegisterResult> {
-    return this.http.post<RegisterResult>(`${this.apiUrl}/register`, { username, password });
+  /**
+   * Зарегестрировать пользователя
+   * @param username логин
+   * @param password пароль
+   */
+  register(username: string, password: string): Observable<Session> {
+    return this.http.post<Session>(`${this.apiUrl}/register`, { username, password });
   }
 
+  /**
+   * Войти
+   * @param username логин
+   * @param password пароль
+   */
   login(username: string, password: string): Observable<Session> {
     return this.http.post<Session>(`${this.apiUrl}/login`, { username, password })
       .pipe(tap(s => this.save(s)));
   }
 
+  /**
+   * Выйти
+   */
   logout(): void {
     localStorage.removeItem(STORAGE_KEY);
     this.username.set(null);
@@ -31,6 +44,10 @@ export class AuthService {
     this.isLoggedIn.set(false);
   }
 
+  /**
+   * Сохранить сессию
+   * @param session сессия
+   */
   private save(session: Session): void {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     this.username.set(session.username);
@@ -38,6 +55,9 @@ export class AuthService {
     this.isLoggedIn.set(true);
   }
 
+  /**
+   * Восстановить сессию
+   */
   private restore(): Session | null {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);

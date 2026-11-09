@@ -18,4 +18,4 @@ export interface Conversation {
 }
 
 export type { MessageStatus } from '../../shared/models';
-import type { MessageStatus } from '../../shared/models';
+import type { MessageStatus } from '@shared';

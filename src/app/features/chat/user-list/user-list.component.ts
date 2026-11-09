@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ChatUser } from '../models';
 
+/** Элемент списка собеседников */
 @Component({
   selector: 'app-user-list',
   standalone: true,

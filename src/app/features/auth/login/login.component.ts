@@ -45,36 +45,16 @@ export class LoginComponent {
   submit(): void {
     this.error.set(null);
 
-    if (this.mode() === 'login') {
-      this.login();
-    } else {
-      this.register();
-    }
-  }
-
-  /** Вход: получает токен и переходит в чат. */
-  private login(): void {
     this.busy.set(true);
-    this.auth.login(this.username, this.password).subscribe({
+    // login() и register() возвращают одинаковый Session,
+    // поэтому обработка результата общая
+    const call =
+        this.mode() === 'login'
+            ? this.auth.login(this.username, this.password)
+            : this.auth.register(this.username, this.password);
+
+    call.subscribe({
       next: () => this.router.navigate(['/chat']),
-      error: e => {
-        this.busy.set(false);
-        this.error.set(apiErrorMessage(e));
-      }
-    });
-  }
-
-  /** Регистрация нового аккаунта с последующим автоматическим входом. */
-  private register(): void {
-    this.busy.set(true);
-    this.auth.register(this.username, this.password).subscribe({
-      next: () => this.auth.login(this.username, this.password).subscribe({
-        next: () => this.router.navigate(['/chat']),
-        error: e => {
-          this.busy.set(false);
-          this.error.set(apiErrorMessage(e));
-        }
-      }),
       error: e => {
         this.busy.set(false);
         this.error.set(apiErrorMessage(e));
