@@ -38,7 +38,7 @@ export class AuthService {
    * Выйти
    */
   logout(): void {
-    localStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(STORAGE_KEY);
     this.username.set(null);
     this.token.set(null);
     this.isLoggedIn.set(false);
@@ -49,7 +49,7 @@ export class AuthService {
    * @param session сессия
    */
   private save(session: Session): void {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     this.username.set(session.username);
     this.token.set(session.token);
     this.isLoggedIn.set(true);
@@ -60,7 +60,7 @@ export class AuthService {
    */
   private restore(): Session | null {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = sessionStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       const parsed = JSON.parse(raw);
       return parsed?.token ? parsed : null;

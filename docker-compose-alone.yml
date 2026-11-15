@@ -1,0 +1,14 @@
+# compose для фронтенда
+
+services:
+  # Фронт: nginx раздаёт статику и проксирует /api на сервер
+  frontend:
+    build: .
+    ports:
+      - "4200:80"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge

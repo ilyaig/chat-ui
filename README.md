@@ -9,15 +9,12 @@
 - `src/app/features` — экраны: auth (логин/регистрация), chat (чат-страница)
 - Алиасы импортов: `@core`, `@shared`, `@features`, `@env`
 
-## Запуск
-1. Поднимите бэкенд (chat-server-spring.zip): `docker compose up --build` — порт 8080.
-2. Здесь: `npm install`, затем `npm start` — http://localhost:4200
-   (dev-прокси перенаправляет /api на бэкенд, см. proxy.conf.json).
+## Запуск №1
+1. Поднимите бэкенд (chat-server): `docker compose up -f docker-compose-alone --build` — порт 8080.
+2. Поднимите фронт: `docker compose up -f docker-compose-alone --build`
 
-## Production-сборка
-`npm run build` → статика в `dist/chat-ui/browser`.
-Раздавайте любым статическим сервером; если API на другом домене —
-укажите его URL в `src/environments/environment.production.ts`.
+## Запуск №2
+1. Поднимите всё: `docker compose up -f docker-compose-all --build`. Папка сервера(chat-server) должна лежать рядом с папкой фронта(chat-ui)
 
 ## Реактивность
 Переписка и статусы приходят через Server-Sent Events (`/api/events?token=...`).

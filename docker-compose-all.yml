@@ -9,10 +9,12 @@ services:
     ports:
       - "4200:80"
     depends_on:
-      - server
+      - chat-server
+    networks:
+      - app-net
 
   # Сервер
-  server:
+  chat-server:
     build: ../chat-server
     ports:
       - "8080:8080"
@@ -23,6 +25,8 @@ services:
       DB_PASSWORD: chat
     depends_on:
       - db
+    networks:
+      - app-net
 
   # PostgreSQL для пользователей и истории сообщений
   db:
@@ -33,3 +37,11 @@ services:
       POSTGRES_PASSWORD: chat
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-net
+
+volumes:
+  pgdata:
+networks:
+  app-net:
+    driver: bridge
